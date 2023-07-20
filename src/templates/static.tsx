@@ -92,7 +92,7 @@ const Static: Template<TemplateRenderProps> = ({
 
   return (
     <>
-    <a href="/Learch" target = "_blank" rel="noreferrer">
+    <a href="/Locator" target = "_blank" rel="noreferrer">
       <h1 className="font-extrabold hover:underline hover:text-blue-900">Click here to view locator</h1>
       </a>
     </>
