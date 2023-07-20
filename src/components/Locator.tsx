@@ -142,7 +142,7 @@ const Locator = (): JSX.Element => {
 
   return (
     <>
-      <div className="relative flex h-[calc(100vh-210px)] flex-col border md:flex-row ">
+      <div className="relative flex h-[calc(100vh)] flex-col border md:flex-row ">
         {initialSearchState !== "complete" && (
           <div className="absolute z-20 flex h-full w-full items-center justify-center bg-white opacity-70">
             <BiLoaderAlt className="animate-spin " size={64} />
