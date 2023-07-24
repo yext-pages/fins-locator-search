@@ -6,8 +6,6 @@ import {
   FilterSearch,
   OnSelectParams,
   VerticalResults,
-  StandardCard,
-  StandardFacets,
   getUserLocation,
   OnDragHandler,
   Facets,
@@ -208,7 +206,7 @@ const Locator = (): JSX.Element => {
         <div className="relative h-[calc(100vh-310px)] w-full md:h-full md:w-2/3">
           <MapboxMap
             mapboxAccessToken="pk.eyJ1IjoiaHJpY2gwNiIsImEiOiJjbGg5Ym5wancwNXR0M2pvNzVjOG5rYmJ4In0.l3dQnS7P6byBu5hGgKgVPQ"
-            // PinComponent={MapPin}
+            PinComponent={MapPin}
             onDrag={handleDrag}
           />
           {showSearchAreaButton && (
