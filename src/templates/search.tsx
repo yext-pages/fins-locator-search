@@ -15,6 +15,7 @@ import {
   provideHeadless,
   SearchHeadlessProvider,
 } from "@yext/search-headless-react";
+import {apiKey, experienceKey, locale, experienceVersion} from "../common/consts";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `index.html`;
@@ -29,10 +30,11 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = () => {
 };
 
 const searcher = provideHeadless({
-  apiKey: "77dfdd45e7bffc68f41101490470b7f2",
-  experienceKey: "fins_locator",
-  locale: "en",
+  apiKey: apiKey,
+  experienceKey: experienceKey,
+  locale: locale,
   verticalKey: "locations",
+  experienceVersion: experienceVersion,
 });
 
 const Search: Template<TemplateRenderProps> = () => {

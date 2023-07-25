@@ -4,11 +4,45 @@ import { CardComponent, CardProps } from "@yext/search-ui-react";
 import * as React from "react";
 import Location, { Coordinate } from "../types/locations";
 import { RiDirectionFill, RiPhoneFill } from "react-icons/ri";
+import { provideSearchAnalytics } from "@yext/analytics";
+import { experienceKey, experienceVersion, businessId } from "../common/consts";
+import { useSearchState } from "@yext/search-headless-react";
+
+export const searchAnalytics = provideSearchAnalytics({
+  experienceKey: experienceKey,
+  experienceVersion: experienceVersion,
+  businessId: businessId
+})
+
 
 const LocatorCard: CardComponent<Location> = ({
   result,
 }: CardProps<Location>): JSX.Element => {
   const location = result.rawData;
+
+  //replace below with the appropriate vertical key
+  const verticalKey = 'locations'
+
+const queryId = useSearchState((state)=>state.query.queryId) || "";
+const fireClick = (id:string,label:string)=>{
+    searchAnalytics.report({
+        type: "CTA_CLICK",
+        entityId: id,
+        verticalKey: verticalKey,
+        searcher: "VERTICAL",
+        queryId: queryId,
+        ctaLabel: label
+    })
+}; 
+const fireTitle = (id:string)=> {
+  searchAnalytics.report({
+      type: "TITLE_CLICK",
+      entityId: id,
+      verticalKey: verticalKey,
+      searcher: "VERTICAL",
+      queryId: queryId,
+  })
+}
 
   // function that takes coordinates and returns a google maps link for directions
   const getGoogleMapsLink = (coordinate: Coordinate): string => {
@@ -18,7 +52,7 @@ const LocatorCard: CardComponent<Location> = ({
   return (
     <div className="flex justify-between border-y p-4">
       <div className="flex">
-        <div>
+        <div onClick ={() => fireTitle(result.id || "")}>
           <a
             target={"_blank"}
             href={location.slug}
